@@ -9,6 +9,18 @@ const port = process.env.PORT || 3001;
 
 // Middleware
 app.use(cors());
+const allowedOrigins = ['https://ai-summerizer-5vgx.vercel.app/', 'http://localhost:5173']; // Add your frontend URL here
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    if (allowedOrigins.indexOf(origin) !== -1 || !origin) {
+      // Allow requests from the defined origin and non-browser requests (like Postman)
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  }
+};
 app.use(express.json());
 
 // Initialize Google Generative AI
