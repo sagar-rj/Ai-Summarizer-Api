@@ -7,8 +7,7 @@ const nodemailer = require('nodemailer');
 const app = express();
 const port = process.env.PORT || 3001;
 
-// Middleware
-app.use(cors());
+
 const allowedOrigins = ['https://ai-summerizer-5vgx.vercel.app/', 'http://localhost:5173']; // Add your frontend URL here
 
 const corsOptions = {
@@ -21,6 +20,8 @@ const corsOptions = {
     }
   }
 };
+// CORS middleware
+app.use(cors(corsOptions));
 app.use(express.json());
 
 // Initialize Google Generative AI
