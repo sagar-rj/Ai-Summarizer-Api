@@ -1,6 +1,6 @@
 const express = require('express');
 const cors = require('cors');
-require('dotenv').config({ path: '/custom/path/.env' });
+require('dotenv').config();
 const { GoogleGenerativeAI } = require('@google/generative-ai');
 const nodemailer = require('nodemailer');
 
@@ -8,7 +8,7 @@ const app = express();
 const port = process.env.PORT || 3001;
 
 
-const allowedOrigins = ['https://ai-summerizer-5vgx.vercel.app/', 'http://localhost:5173']; // Add your frontend URL here
+const allowedOrigins = ['https://ai-summerizer-5vgx.vercel.app', 'http://localhost:5173']; // Add your frontend URL here
 
 const corsOptions = {
   origin: function (origin, callback) {
@@ -22,6 +22,7 @@ const corsOptions = {
 };
 // CORS middleware
 app.use(cors(corsOptions));
+// app.use(cors());
 app.use(express.json());
 
 // Initialize Google Generative AI
